@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>海角最新地址-海角最新地址发布页_海角地址获取与访问入口</title>
+<meta name="description" content="海角最新地址发布页，说明海角最新地址的获取方式、访问入口与使用提示，帮助在海角地址变动时快速找到可用入口，并区分官方发布渠道与第三方页面。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1f2e'/%3E%3Cpath d='M14 42c8-16 28-16 36 0' stroke='%233fd0c5' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='24' r='5' fill='%23ffcf6b'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#0d1f2e;
+  --ink-2:#16344a;
+  --sea:#3fd0c5;
+  --sea-deep:#1f8f88;
+  --sand:#ffcf6b;
+  --paper:#f6f1e7;
+  --paper-2:#fffdf8;
+  --line:#d9d2c4;
+  --text:#22333f;
+  --muted:#5d707c;
+  --radius:18px;
+  --shadow:0 18px 40px -28px rgba(13,31,46,.55);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--text);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;display:block;}
+a{color:var(--sea-deep);text-decoration:none;}
+a:hover{text-decoration:underline;}
+.wrap{width:min(1120px,92vw);margin:0 auto;}
+
+/* ===== 页头 ===== */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(13,31,46,.96);
+  color:#fff;
+  border-bottom:1px solid rgba(63,208,197,.25);
+  backdrop-filter:blur(8px);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:18px;padding:12px 0;
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;}
+.brand-mark{width:38px;height:38px;flex:none;}
+.brand-text{
+  font-size:19px;font-weight:800;letter-spacing:.5px;color:#fff;
+  white-space:nowrap;
+}
+.nav{display:flex;gap:6px;flex-wrap:wrap;}
+.nav a{
+  color:#cfe3e6;font-size:14.5px;padding:7px 12px;border-radius:999px;
+  white-space:nowrap;
+}
+.nav a:hover{background:rgba(63,208,197,.16);color:#fff;text-decoration:none;}
+.nav .nav-cta{
+  background:var(--sea);color:#062a2b;font-weight:700;
+}
+.nav .nav-cta:hover{background:var(--sand);color:#3a2600;}
+
+/* ===== 首屏 ===== */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(1000px 420px at 78% -10%,rgba(63,208,197,.22),transparent 60%),
+    radial-gradient(760px 380px at 8% 110%,rgba(255,207,107,.16),transparent 60%),
+    linear-gradient(180deg,#0d1f2e 0%,#123043 62%,#0f2738 100%);
+  color:#eaf4f5;
+  padding:52px 0 56px;
+}
+.hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:60px;
+  background:var(--paper);
+  clip-path:polygon(0 100%,0 55%,12% 62%,28% 44%,45% 58%,63% 38%,80% 56%,100% 46%,100% 100%);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.25fr .9fr;gap:38px;align-items:center;
+  position:relative;z-index:2;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;letter-spacing:2px;color:var(--sea);
+  border:1px solid rgba(63,208,197,.45);
+  padding:4px 12px;border-radius:999px;margin-bottom:16px;
+}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--sea);box-shadow:0 0 0 4px rgba(63,208,197,.18);}
+h1{
+  font-size:clamp(28px,4.4vw,44px);
+  line-height:1.25;margin:0 0 16px;letter-spacing:1px;color:#fff;font-weight:800;
+}
+.hero-lead{
+  font-size:16.5px;color:#c7dadd;margin:0 0 24px;max-width:40em;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 22px;border-radius:999px;font-weight:700;font-size:15px;
+  border:1px solid transparent;cursor:pointer;
+}
+.btn-primary{background:var(--sea);color:#062a2b;}
+.btn-primary:hover{background:var(--sand);color:#3a2600;text-decoration:none;}
+.btn-ghost{background:transparent;color:#e8f6f6;border-color:rgba(232,246,246,.4);}
+.btn-ghost:hover{background:rgba(255,255,255,.1);text-decoration:none;}
+.hero-note{font-size:13px;color:#9fb8bd;margin-top:16px;}
+
+/* 首屏右侧卡片 */
+.status-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(63,208,197,.28);
+  border-radius:var(--radius);
+  padding:22px;
+  backdrop-filter:blur(4px);
+}
+.status-card h2{
+  font-size:15px;margin:0 0 14px;color:var(--sand);letter-spacing:1px;font-weight:700;
+}
+.status-list{list-style:none;margin:0;padding:0;display:grid;gap:12px;}
+.status-list li{
+  display:flex;justify-content:space-between;gap:12px;
+  font-size:14px;color:#cfe3e6;border-bottom:1px dashed rgba(207,227,230,.18);padding-bottom:10px;
+}
+.status-list li:last-child{border-bottom:none;padding-bottom:0;}
+.status-list b{color:#fff;font-weight:700;text-align:right;}
+
+/* ===== 通用区块 ===== */
+section{padding:56px 0;}
+.section-head{margin-bottom:28px;max-width:46em;}
+.kicker{
+  font-size:13px;letter-spacing:2px;color:var(--sea-deep);font-weight:700;margin:0 0 8px;
+}
+h2.sec-title{
+  font-size:clamp(22px,2.6vw,30px);margin:0 0 10px;color:var(--ink);font-weight:800;letter-spacing:.5px;
+}
+.sec-sub{margin:0;color:var(--muted);font-size:15.5px;}
+
+/* 获取方式 */
+.steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.step{
+  background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;box-shadow:var(--shadow);position:relative;
+}
+.step-no{
+  width:34px;height:34px;border-radius:10px;
+  background:var(--ink);color:var(--sand);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:15px;margin-bottom:14px;
+}
+.step h3{font-size:17px;margin:0 0 8px;color:var(--ink);}
+.step p{margin:0;font-size:14.5px;color:var(--muted);}
+
+/* 双栏正文 */
+.split{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:start;
+}
+.prose p{margin:0 0 14px;font-size:15.5px;}
+.prose p:last-child{margin-bottom:0;}
+.prose strong{color:var(--ink);}
+.checklist{
+  background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;box-shadow:var(--shadow);
+}
+.checklist h3{font-size:16px;margin:0 0 14px;color:var(--ink);}
+.checklist ul{list-style:none;margin:0;padding:0;display:grid;gap:12px;}
+.checklist li{display:flex;gap:10px;font-size:14.5px;color:var(--muted);}
+.checklist li::before{
+  content:"";flex:none;width:18px;height:18px;margin-top:4px;border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%,#fff 0 3px,transparent 3px),
+    var(--sea);
+}
+
+/* 常见问题 */
+.faq{display:grid;gap:14px;}
+details{
+  background:var(--paper-2);border:1px solid var(--line);border-radius:14px;
+  padding:0 20px;box-shadow:var(--shadow);
+}
+details[open]{border-color:rgba(63,208,197,.7);}
+summary{
+  cursor:pointer;list-style:none;font-weight:700;color:var(--ink);
+  padding:16px 0;font-size:15.5px;display:flex;justify-content:space-between;gap:14px;align-items:center;
+}
+summary::-webkit-details-marker{display:none;}
+summary::after{
+  content:"+";font-size:20px;color:var(--sea-deep);font-weight:700;line-height:1;flex:none;
+}
+details[open] summary::after{content:"–";}
+details .faq-body{padding:0 0 18px;font-size:14.8px;color:var(--muted);}
+
+/* 地址卡区 */
+.addr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.addr-card{
+  background:linear-gradient(160deg,#123043,#0d1f2e);
+  color:#e3f1f2;border-radius:var(--radius);padding:24px;
+  border:1px solid rgba(63,208,197,.22);
+  display:flex;flex-direction:column;gap:10px;
+}
+.addr-card .tag{
+  align-self:flex-start;font-size:12px;letter-spacing:1px;color:#062a2b;
+  background:var(--sand);padding:3px 10px;border-radius:999px;font-weight:800;
+}
+.addr-card h3{font-size:17px;margin:0;color:#fff;}
+.addr-card p{margin:0;font-size:14px;color:#a9c3c8;}
+.addr-card .addr-line{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:13.5px;background:rgba(255,255,255,.07);
+  border:1px dashed rgba(255,255,255,.22);border-radius:10px;
+  padding:9px 12px;color:#dff7f6;word-break:break-all;
+}
+.addr-card .card-foot{
+  margin-top:auto;font-size:13px;color:#8fb0b6;
+}
+
+/* 下载条 */
+.download-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 26px;box-shadow:var(--shadow);
+}
+.download-bar h3{margin:0 0 4px;font-size:17px;color:var(--ink);}
+.download-bar p{margin:0;font-size:14px;color:var(--muted);}
+.btn-disabled{
+  background:#c9d4d8;color:#54636b;border:1px solid #bcc9cd;
+  pointer-events:none;
+}
+.btn-disabled:hover{text-decoration:none;}
+
+/* 页尾 */
+.site-footer{
+  background:var(--ink);color:#b6cbd0;padding:40px 0 28px;margin-top:8px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px;
+  padding-bottom:26px;border-bottom:1px solid rgba(255,255,255,.12);
+}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.footer-brand .brand-text{font-size:17px;}
+.site-footer p{margin:0;font-size:13.5px;line-height:1.8;color:#9db6bc;}
+.site-footer h4{font-size:14px;color:#fff;margin:0 0 12px;letter-spacing:1px;}
+.footer-links{list-style:none;margin:0;padding:0;display:grid;gap:9px;}
+.footer-links a{color:#b6cbd0;font-size:13.5px;}
+.footer-links a:hover{color:var(--sea);text-decoration:none;}
+.copyright{
+  padding-top:18px;font-size:12.5px;color:#7d979e;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:28px;}
+  .split{grid-template-columns:1fr;gap:24px;}
+  .steps{grid-template-columns:1fr;}
+  .addr-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:640px){
+  .header-inner{flex-direction:column;align-items:flex-start;gap:10px;padding:12px 0;}
+  .nav{width:100%;overflow-x:auto;padding-bottom:2px;}
+  .nav a{font-size:13.5px;padding:6px 10px;}
+  .brand-text{font-size:17px;}
+  section{padding:40px 0;}
+  .hero{padding:38px 0 46px;}
+  .hero-lead{font-size:15.5px;}
+  .btn{padding:11px 18px;font-size:14.5px;}
+  .footer-grid{grid-template-columns:1fr;}
+  .download-bar{padding:20px;}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#123043"/>
+        <path d="M12 44c9-18 31-18 40 0" stroke="#3fd0c5" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M20 48c7-10 17-10 24 0" stroke="#1f8f88" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="32" cy="23" r="5.5" fill="#ffcf6b"/>
+      </svg>
+      <span class="brand-text">海角最新地址</span>
+    </div>
+    <nav class="nav" aria-label="主导航">
+      <a href="#get">获取方式</a>
+      <a href="#explain">地址说明</a>
+      <a href="#entries">入口一览</a>
+      <a href="#faq">常见问题</a>
+      <a class="nav-cta" href="#entries">查找入口</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>发布页 · 保持可查</span>
+        <h1>海角最新地址</h1>
+        <p class="hero-lead">
+          当原有链接失效或跳转异常时，访问者最需要的是确认当前可用的入口。本页围绕海角最新地址的获取顺序、判断依据与常见问题展开，把查找路径写清楚，减少反复试错。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#get">查看获取方式</a>
+          <a class="btn btn-ghost" href="#entries">浏览入口一览</a>
+        </div>
+        <p class="hero-note">提示：请以发布页公布的信息为准，不要轻信来源不明的转载链接。</p>
+      </div>
+
+      <aside class="status-card" aria-label="地址状态概览">
+        <h2>页面信息概览</h2>
+        <ul class="status-list">
+          <li><span>页面类型</span><b>地址发布页</b></li>
+          <li><span>更新依据</span><b>发布渠道公告</b></li>
+          <li><span>建议核对</span><b>域名与路径</b></li>
+          <li><span>适用场景</span><b>旧链接失效</b></li>
+          <li><span>信息范围</span><b>入口与提示</b></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 获取方式 -->
+  <section id="get">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">获取顺序</p>
+        <h2 class="sec-title">按三个步骤确认海角最新地址</h2>
+        <p class="sec-sub">先看来源，再对域名，最后再打开。顺序比速度更重要。</p>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <div class="step-no">01</div>
+          <h3>认准发布渠道</h3>
+          <p>优先查看长期使用的发布页或公告渠道，确认该渠道与海角最新地址的公布主体一致，避免从群聊转发或陌生短链直接跳转。</p>
+        </article>
+        <article class="step">
+          <div class="step-no">02</div>
+          <h3>逐字核对域名</h3>
+          <p>把拿到的链接与发布页展示的域名逐段比对，注意形近字母、多余连字符和多级子域。海角最新地址的细微差异往往就是错误入口的来源。</p>
+        </article>
+        <article class="step">
+          <div class="step-no">03</div>
+          <h3>正常打开并留存</h3>
+          <p>确认无误后再访问，并把可用的海角最新地址存入浏览器书签。若页面提示异常，回到发布页重新核对，而不是在搜索结果里随意点开。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 地址说明 -->
+  <section id="explain" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap split">
+      <div class="prose">
+        <div class="section-head" style="margin-bottom:18px;">
+          <p class="kicker">地址说明</p>
+          <h2 class="sec-title">为什么需要持续关注海角最新地址</h2>
+        </div>
+        <p>站点入口发生变化并不罕见，常见原因包括域名调整、访问线路切换以及原有路径下线。对访问者而言，这意味着昨天保存的链接今天未必可用，因此需要一个固定的地方来公布当前入口。</p>
+        <p><strong>海角最新地址</strong>的作用正在于此：它是一个信息汇聚点，而不是一个新的内容站点。发布页本身通常只展示入口、时间与相关提示，真正的浏览行为发生在被指向的地址上。</p>
+        <p>理解这一点，就能避免把发布页误当成站点本体，也能在多个自称发布页的页面同时出现时，优先选择长期稳定、更新记录清楚的那一个。</p>
+      </div>
+      <aside class="checklist">
+        <h3>打开前建议核对</h3>
+        <ul>
+          <li>域名拼写是否与公布信息完全一致</li>
+          <li>链接是否来自长期使用的公布渠道</li>
+          <li>页面是否要求输入与访问无关的敏感信息</li>
+          <li>是否被要求下载来源不明的安装包</li>
+          <li>跳转次数是否明显多于平常</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 入口一览 -->
+  <section id="entries">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">入口一览</p>
+        <h2 class="sec-title">三类常见入口的用途区分</h2>
+        <p class="sec-sub">按用途区分入口，比记住一堆链接更有用。以下为入口类型说明，具体地址以发布页公布为准。</p>
+      </div>
+      <div class="addr-grid">
+        <article class="addr-card">
+          <span class="tag">主入口</span>
+          <h3>常规访问线路</h3>
+          <p>日常首选。打开顺利时无需切换，适合长期收藏。</p>
+          <div class="addr-line">以发布页公布为准</div>
+          <p class="card-foot">用途：日常浏览</p>
+        </article>
+        <article class="addr-card">
+          <span class="tag">备用</span>
+          <h3>备用访问线路</h3>
+          <p>主入口响应慢或打不开时启用，内容与主入口一致。</p>
+          <div class="addr-line">以发布页公布为准</div>
+          <p class="card-foot">用途：线路切换</p>
+        </article>
+        <article class="addr-card">
+          <span class="tag">发布</span>
+          <h3>地址发布页</h3>
+          <p>只负责公布海角最新地址与更新时间，不承载正文内容。</p>
+          <div class="addr-line">本页即发布说明</div>
+          <p class="card-foot">用途：核对与溯源</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 常见问题 -->
+  <section id="faq" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">常见问题</p>
+        <h2 class="sec-title">关于海角最新地址的高频疑问</h2>
+        <p class="sec-sub">把容易混淆的几点说清楚，减少无效尝试。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>搜到的第一个结果一定是海角最新地址吗？</summary>
+          <div class="faq-body">不一定。搜索结果会混入转载页、聚合页和仿制页面，排序靠前不代表来源可靠。更稳妥的做法是先确认发布渠道，再对照域名，最后才访问。</div>
+        </details>
+        <details>
+          <summary>旧链接还能打开，需要更换吗？</summary>
+          <div class="faq-body">能正常打开说明当前可用，但旧链接可能随时下线。建议把发布页本身加入收藏，这样即使入口变动，也能从固定位置重新获取海角最新地址。</div>
+        </details>
+        <details>
+          <summary>为什么不同渠道给出的地址不一样？</summary>
+          <div class="faq-body">可能处于不同更新时点，也可能其中一方并非官方公布。遇到冲突时，以更新记录更完整、发布时间更近的发布渠道为准，并核对域名细节。</div>
+        </details>
+        <details>
+          <summary>访问时被要求安装程序怎么办？</summary>
+          <div class="faq-body">正常的地址访问不需要额外安装来源不明的程序。若页面强制要求下载或索取无关信息，应停止操作并返回发布页重新核对入口。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下载条 -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="download-bar">
+        <div>
+          <h3>地址信息卡</h3>
+          <p>整理入口类型与核对要点，便于离线保存和转发给同好参考。</p>
+        </div>
+        <a class="btn btn-disabled" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#16344a"/>
+            <path d="M12 44c9-18 31-18 40 0" stroke="#3fd0c5" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <circle cx="32" cy="23" r="5.5" fill="#ffcf6b"/>
+          </svg>
+          <span class="brand-text">海角最新地址</span>
+        </div>
+        <p>海角最新地址发布说明页，集中说明入口获取顺序、核对要点与常见疑问。页面只做信息说明，具体地址以正式公布内容为准。</p>
+      </div>
+      <div>
+        <h4>页面导航</h4>
+        <ul class="footer-links">
+          <li><a href="#get">获取方式</a></li>
+          <li><a href="#explain">地址说明</a></li>
+          <li><a href="#entries">入口一览</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>使用提醒</h4>
+        <ul class="footer-links">
+          <li><a href="#explain">打开前核对清单</a></li>
+          <li><a href="#faq">来源冲突处理</a></li>
+          <li><a href="#get">收藏发布页</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© 海角最新地址 · 地址发布说明</span>
+      <span>信息以正式公布渠道为准，请理性辨别来源。</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+              </html>
