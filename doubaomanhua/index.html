@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>豆包漫画-豆包漫画在线阅读_豆包漫画平台与漫画推荐</title>
+<meta name="description" content="豆包漫画主题首页，汇总豆包漫画的阅读入口、热门漫画推荐、题材分类与平台使用要点，帮助读者快速找到想看的豆包漫画内容。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f7b955'/%3E%3Cpath d='M16 20h32v26a4 4 0 0 1-4 4H20a4 4 0 0 1-4-4z' fill='%23fff6e5'/%3E%3Cpath d='M22 26h20M22 34h20M22 42h12' stroke='%23c96a2b' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#2c2318;
+    --ink-soft:#5f5344;
+    --paper:#fffaf1;
+    --paper-2:#fdf1dd;
+    --line:#e8d7bd;
+    --accent:#e2762c;
+    --accent-deep:#b9521b;
+    --gold:#f4b64f;
+    --shadow:0 14px 34px rgba(120,80,30,.12);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 500px at 85% -10%, #ffe7bf 0%, rgba(255,231,191,0) 60%),
+      radial-gradient(900px 420px at 0% 10%, #fde9cf 0%, rgba(253,233,207,0) 55%),
+      var(--paper);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{width:min(1120px,92vw);margin:0 auto;}
+
+  /* 页头 */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,250,241,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;gap:18px;
+    padding:12px 0;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-weight:800;font-size:1.12rem;letter-spacing:.5px;
+    color:var(--ink);white-space:nowrap;
+  }
+  .brand .logo-mark{
+    width:40px;height:40px;border-radius:12px;overflow:hidden;flex:none;
+    box-shadow:0 6px 14px rgba(226,118,44,.28);
+  }
+  .nav-links{
+    display:flex;gap:6px;margin-left:auto;flex-wrap:wrap;
+  }
+  .nav-links a{
+    padding:7px 12px;border-radius:999px;font-size:.92rem;color:var(--ink-soft);
+    transition:.2s;
+  }
+  .nav-links a:hover{background:var(--paper-2);color:var(--accent-deep);}
+  .nav-cta{
+    background:var(--accent);color:#fff !important;font-weight:600;
+    padding:8px 16px !important;
+  }
+  .nav-cta:hover{background:var(--accent-deep) !important;color:#fff !important;}
+
+  /* 首屏 */
+  .hero{padding:54px 0 40px;}
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.82rem;font-weight:700;letter-spacing:1.5px;
+    color:var(--accent-deep);text-transform:uppercase;
+    background:#fff;border:1px solid var(--line);border-radius:999px;
+    padding:5px 14px;margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";width:7px;height:7px;border-radius:50%;
+    background:var(--accent);
+  }
+  h1{
+    font-size:clamp(2rem,4.6vw,3.1rem);
+    line-height:1.22;margin:0 0 18px;
+    letter-spacing:1px;font-weight:900;
+  }
+  h1 .hl{
+    background:linear-gradient(transparent 62%, #ffd88f 62%);
+    padding:0 4px;
+  }
+  .lead{
+    font-size:1.02rem;color:var(--ink-soft);margin:0 0 26px;max-width:46ch;
+  }
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    border-radius:999px;padding:12px 24px;font-weight:700;font-size:.96rem;
+    border:1px solid transparent;cursor:pointer;transition:.2s;
+  }
+  .btn-primary{
+    background:var(--accent);color:#fff;
+    box-shadow:0 10px 24px rgba(226,118,44,.32);
+  }
+  .btn-primary:hover{background:var(--accent-deep);transform:translateY(-1px);}
+  .btn-ghost{
+    background:#fff;border-color:var(--line);color:var(--ink);
+  }
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent-deep);}
+  .btn[aria-disabled="true"]{
+    background:#fff;border-color:var(--line);color:var(--ink-soft);
+    pointer-events:none;box-shadow:none;
+  }
+  .hero-figure{
+    position:relative;background:#fff;border:1px solid var(--line);
+    border-radius:26px;padding:16px;box-shadow:var(--shadow);
+  }
+  .hero-figure .cap{
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:.78rem;color:var(--ink-soft);margin-top:10px;letter-spacing:.5px;
+  }
+  .stat-row{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px;
+  }
+  .stat{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:14px 16px;
+  }
+  .stat b{display:block;font-size:1.28rem;color:var(--accent-deep);}
+  .stat span{font-size:.82rem;color:var(--ink-soft);}
+
+  /* 通用分区 */
+  section{padding:44px 0;}
+  .sec-head{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:18px;margin-bottom:26px;flex-wrap:wrap;
+  }
+  .sec-head h2{
+    font-size:clamp(1.3rem,2.6vw,1.72rem);margin:0;letter-spacing:.5px;
+  }
+  .sec-head p{margin:4px 0 0;color:var(--ink-soft);font-size:.92rem;max-width:60ch;}
+  .sec-tag{
+    font-size:.78rem;font-weight:700;color:var(--accent-deep);
+    background:var(--paper-2);border-radius:999px;padding:5px 13px;white-space:nowrap;
+  }
+
+  /* 漫画卡片 */
+  .cards{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;
+  }
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;
+    transition:.22s;box-shadow:0 4px 14px rgba(120,80,30,.06);
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#f0c79a;}
+  .card .cover{aspect-ratio:16/9;overflow:hidden;background:var(--paper-2);}
+  .card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card h3{margin:0;font-size:1.05rem;letter-spacing:.3px;}
+  .card p{margin:0;font-size:.88rem;color:var(--ink-soft);flex:1;}
+  .meta{
+    display:flex;gap:8px;flex-wrap:wrap;font-size:.75rem;color:var(--accent-deep);
+  }
+  .meta span{background:var(--paper-2);border-radius:6px;padding:2px 9px;}
+  .card .link{
+    font-size:.85rem;font-weight:700;color:var(--accent-deep);
+    display:inline-flex;align-items:center;gap:5px;
+  }
+
+  /* 题材导航 */
+  .genres{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;
+  }
+  .genre{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;display:flex;flex-direction:column;gap:4px;
+    transition:.2s;
+  }
+  .genre:hover{border-color:var(--accent);background:#fffdf7;}
+  .genre b{font-size:.98rem;}
+  .genre small{color:var(--ink-soft);font-size:.78rem;}
+
+  /* 阅读要点 */
+  .split{
+    display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start;
+  }
+  .panel{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 28px;box-shadow:0 4px 14px rgba(120,80,30,.05);
+  }
+  .panel h3{margin:0 0 14px;font-size:1.14rem;}
+  .panel ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:12px;}
+  .panel li{
+    display:flex;gap:12px;font-size:.92rem;color:var(--ink-soft);
+  }
+  .panel li .num{
+    flex:none;width:24px;height:24px;border-radius:50%;
+    background:var(--paper-2);color:var(--accent-deep);
+    font-size:.76rem;font-weight:800;display:grid;place-items:center;margin-top:2px;
+  }
+  .panel li b{color:var(--ink);}
+
+  /* 搜索 */
+  .search-box{
+    background:linear-gradient(135deg,#fff4e0,#ffe6c4);
+    border:1px solid #f3d3a4;border-radius:22px;padding:30px;
+    display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+  }
+  .search-box label{font-weight:700;font-size:.95rem;white-space:nowrap;}
+  .search-box input{
+    flex:1;min-width:200px;border:1px solid #e8c99a;border-radius:999px;
+    padding:11px 20px;font-size:.95rem;background:#fff;color:var(--ink);
+    font-family:inherit;outline:none;
+  }
+  .search-box input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(226,118,44,.15);}
+  .result-line{
+    width:100%;font-size:.88rem;color:var(--accent-deep);font-weight:600;min-height:1.4em;
+  }
+  .hit{outline:3px solid var(--gold);outline-offset:2px;border-radius:var(--radius);}
+
+  /* 页尾 */
+  footer.site{
+    border-top:1px solid var(--line);margin-top:20px;
+    padding:34px 0 40px;background:#fffaf1;
+  }
+  .foot-grid{
+    display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;
+    align-items:flex-start;
+  }
+  .foot-brand{max-width:34ch;font-size:.88rem;color:var(--ink-soft);}
+  .foot-brand .brand{margin-bottom:10px;}
+  .foot-links{display:flex;gap:34px;flex-wrap:wrap;}
+  .foot-links div{font-size:.86rem;}
+  .foot-links b{display:block;margin-bottom:8px;color:var(--ink);}
+  .foot-links a{display:block;color:var(--ink-soft);padding:2px 0;}
+  .foot-links a:hover{color:var(--accent-deep);}
+  .copy{
+    margin-top:26px;padding-top:18px;border-top:1px dashed var(--line);
+    font-size:.78rem;color:#9a8a76;display:flex;justify-content:space-between;
+    gap:12px;flex-wrap:wrap;
+  }
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:30px;}
+    .hero-figure{order:-1;}
+    .split{grid-template-columns:1fr;}
+    .nav-links a:not(.nav-cta){display:none;}
+    .nav-links{margin-left:auto;}
+    .hero{padding:34px 0 26px;}
+    section{padding:34px 0;}
+    .stat-row{grid-template-columns:1fr 1fr;}
+    .search-box{padding:22px;}
+  }
+  @media (max-width:480px){
+    .stat-row{grid-template-columns:1fr;}
+    .cards{grid-template-columns:1fr;}
+    .brand{font-size:1rem;}
+    .brand .logo-mark{width:34px;height:34px;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="豆包漫画 首页">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="40" height="40" role="img" aria-label="豆包漫画标志">
+          <rect width="64" height="64" rx="14" fill="#f7b955"/>
+          <path d="M16 19h32v27a4 4 0 0 1-4 4H20a4 4 0 0 1-4-4z" fill="#fff6e5"/>
+          <path d="M16 19h32v6H16z" fill="#e2762c"/>
+          <path d="M22 31h20M22 38h20M22 45h12" stroke="#c96a2b" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </span>
+      豆包漫画
+    </a>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="#hot">热门漫画</a>
+      <a href="#genres">题材分类</a>
+      <a href="#read">阅读要点</a>
+      <a href="#find">查找漫画</a>
+      <a class="nav-cta" href="#hot">开始阅读</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">漫画阅读 · 主题首页</span>
+        <h1><span class="hl">豆包漫画</span></h1>
+        <p class="lead">豆包漫画把阅读入口、题材分类和漫画推荐放在同一页，方便你先按兴趣圈定方向，再进入具体作品。这里整理的是阅读路径与选片思路，而不是零散的作品清单。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#hot">浏览热门豆包漫画
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#genres">按题材挑选</a>
+          <a class="btn btn-ghost" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><b>6 类</b><span>常用漫画题材</span></div>
+          <div class="stat"><b>3 步</b><span>找漫画的路径</span></div>
+          <div class="stat"><b>1 页</b><span>集中查看阅读入口</span></div>
+        </div>
+      </div>
+
+      <figure class="hero-figure" style="margin:0">
+        <svg viewBox="0 0 420 300" role="img" aria-label="豆包漫画阅读界面示意图">
+          <rect width="420" height="300" rx="18" fill="#fff7ea"/>
+          <rect x="26" y="26" width="150" height="248" rx="12" fill="#f7b955"/>
+          <circle cx="101" cy="98" r="34" fill="#fff6e5"/>
+          <circle cx="90" cy="92" r="4" fill="#2c2318"/>
+          <circle cx="112" cy="92" r="4" fill="#2c2318"/>
+          <path d="M88 112q13 10 26 0" stroke="#2c2318" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+          <rect x="52" y="158" width="98" height="9" rx="4.5" fill="#fff6e5"/>
+          <rect x="52" y="178" width="74" height="9" rx="4.5" fill="#fff6e5" opacity=".8"/>
+          <rect x="52" y="198" width="86" height="9" rx="4.5" fill="#fff6e5" opacity=".6"/>
+          <rect x="196" y="26" width="198" height="72" rx="12" fill="#fff"/>
+          <rect x="196" y="26" width="198" height="72" rx="12" fill="none" stroke="#e8d7bd"/>
+          <rect x="212" y="44" width="52" height="36" rx="6" fill="#ffe0b0"/>
+          <rect x="276" y="50" width="100" height="8" rx="4" fill="#e8d7bd"/>
+          <rect x="276" y="66" width="72" height="8" rx="4" fill="#f0e3cf"/>
+          <rect x="196" y="112" width="198" height="72" rx="12" fill="#fff" stroke="#e8d7bd"/>
+          <rect x="212" y="130" width="52" height="36" rx="6" fill="#ffd0a5"/>
+          <rect x="276" y="136" width="88" height="8" rx="4" fill="#e8d7bd"/>
+          <rect x="276" y="152" width="62" height="8" rx="4" fill="#f0e3cf"/>
+          <rect x="196" y="198" width="198" height="76" rx="12" fill="#fff" stroke="#e8d7bd"/>
+          <rect x="212" y="218" width="52" height="36" rx="6" fill="#ffe9c9"/>
+          <rect x="276" y="224" width="94" height="8" rx="4" fill="#e8d7bd"/>
+          <rect x="276" y="240" width="58" height="8" rx="4" fill="#f0e3cf"/>
+        </svg>
+        <figcaption class="cap">
+          <span>阅读界面示意</span>
+          <span>左：封面 · 右：章节列表</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 热门漫画 -->
+  <section id="hot">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>热门豆包漫画推荐</h2>
+          <p>按题材与阅读节奏分组，先看简介判断是否合口味，再决定是否点进阅读。以下为栏目示例条目，方便你理解本站的推荐结构。</p>
+        </div>
+        <span class="sec-tag">推荐栏目</span>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="cover">
+            <svg viewBox="0 0 320 180" role="img" aria-label="校园日常漫画封面示意">
+              <rect width="320" height="180" fill="#ffe2b8"/>
+              <circle cx="248" cy="44" r="26" fill="#ffd08a"/>
+              <rect x="26" y="96" width="150" height="12" rx="6" fill="#e2762c" opacity=".55"/>
+              <rect x="26" y="120" width="110" height="12" rx="6" fill="#e2762c" opacity=".35"/>
+              <path d="M120 180V96l60-42 60 42v84z" fill="#fff6e5"/>
+              <rect x="154" y="120" width="34" height="60" rx="4" fill="#f4b64f"/>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>校园日常</h3>
+            <p>轻喜剧节奏，单话篇幅短，适合通勤或睡前零碎时间阅读，剧情推进以生活片段为主。</p>
+            <div class="meta"><span>日常</span><span>轻松</span><span>短篇</span></div>
+            <a class="link" href="#find">查看同类题材 →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cover">
+            <svg viewBox="0 0 320 180" role="img" aria-label="奇幻冒险漫画封面示意">
+              <rect width="320" height="180" fill="#d9e5f0"/>
+              <path d="M0 150l70-56 52 40 62-64 72 58 64-30v82H0z" fill="#8fb0c9" opacity=".75"/>
+              <circle cx="252" cy="46" r="22" fill="#f7f1e3"/>
+              <path d="M84 118l18-34 18 34z" fill="#e2762c" opacity=".8"/>
+              <rect x="26" y="30" width="86" height="10" rx="5" fill="#fff" opacity=".8"/>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>奇幻冒险</h3>
+            <p>世界观设定较完整，章节之间前后关联明显，建议按序阅读，避免跳章丢失线索。</p>
+            <div class="meta"><span>奇幻</span><span>长篇</span><span>连续</span></div>
+            <a class="link" href="#find">查看同类题材 →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cover">
+            <svg viewBox="0 0 320 180" role="img" aria-label="悬疑推理漫画封面示意">
+              <rect width="320" height="180" fill="#2c2318"/>
+              <circle cx="160" cy="90" r="48" fill="none" stroke="#f4b64f" stroke-width="8"/>
+              <path d="M196 126l34 34" stroke="#f4b64f" stroke-width="10" stroke-linecap="round"/>
+              <rect x="30" y="30" width="70" height="8" rx="4" fill="#f4b64f" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>悬疑推理</h3>
+            <p>线索分布密集，适合愿意慢读的作品。阅读时留意画面细节，部分伏笔藏在背景里。</p>
+            <div class="meta"><span>悬疑</span><span>推理</span><span>细节向</span></div>
+            <a class="link" href="#find">查看同类题材 →</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cover">
+            <svg viewBox="0 0 320 180" role="img" aria-label="治愈生活漫画封面示意">
+              <rect width="320" height="180" fill="#e6f0e2"/>
+              <circle cx="84" cy="60" r="30" fill="#f7d77a"/>
+              <path d="M0 140q60-40 120 0t120 0 80-16v56H0z" fill="#a9c9a0"/>
+              <rect x="200" y="50" width="90" height="60" rx="8" fill="#fff" opacity=".85"/>
+              <rect x="214" y="66" width="62" height="8" rx="4" fill="#a9c9a0"/>
+              <rect x="214" y="82" width="42" height="8" rx="4" fill="#cfe0ca"/>
+            </svg>
+          </div>
+          <div class="body">
+            <h3>治愈生活</h3>
+            <p>情绪舒缓型内容，画面留白多，适合压力较大时阅读，单章独立性强，可从任意话进入。</p>
+            <div class="meta"><span>治愈</span><span>生活</span><span>独立章</span></div>
+            <a class="link" href="#find">查看同类题材 →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 题材分类 -->
+  <section id="genres" style="background:linear-gradient(180deg,rgba(253,241,221,0),rgba(253,241,221,.7),rgba(253,241,221,0));">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>豆包漫画题材分类</h2>
+          <p>题材是最快的筛选维度。先确定今天想读的情绪类型，再进入对应条目，比漫无目的地翻列表更省时间。</p>
+        </div>
+        <span class="sec-tag">按兴趣入口</span>
+      </div>
+      <div class="genres">
+        <a class="genre" href="#hot"><b>校园日常</b><small>轻松 · 短篇节奏</small></a>
+        <a class="genre" href="#hot"><b>奇幻冒险</b><small>设定 · 连续阅读</small></a>
+        <a class="genre" href="#hot"><b>悬疑推理</b><small>线索 · 慢读细看</small></a>
+        <a class="genre" href="#hot"><b>治愈生活</b><small>舒缓 · 独立章节</small></a>
+        <a class="genre" href="#read"><b>恋爱情感</b><small>关系 · 人物向</small></a>
+        <a class="genre" href="#read"><b>热血成长</b><small>进阶 · 长篇连载</small></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 阅读要点 -->
+  <section id="read">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>读豆包漫画的三点经验</h2>
+          <p>同样一部豆包漫画，阅读顺序和节奏不同，体验差别不小。下面三点是本站整理阅读入口时的取舍依据。</p>
+        </div>
+        <span class="sec-tag">阅读方法</span>
+      </div>
+      <div class="split">
+        <div class="panel">
+          <h3>先定节奏，再定作品</h3>
+          <ul>
+            <li><span class="num">01</span><span><b>碎片时间选独立章。</b>治愈生活、校园日常一类的豆包漫画，单话完成度高，中断成本低。</span></li>
+            <li><span class="num">02</span><span><b>整段时间选连续篇。</b>奇幻冒险与热血成长需要跟着线索走，跳章容易看不懂前因后果。</span></li>
+            <li><span class="num">03</span><span><b>慢读选细节向作品。</b>悬疑推理的分镜里常埋信息，快速滑动会漏掉关键提示。</span></li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>把入口和作品分开看</h3>
+          <ul>
+            <li><span class="num">01</span><span><b>入口决定效率。</b>豆包漫画的页面结构把分类、推荐与章节列表分层，先看哪一层影响查找速度。</span></li>
+            <li><span class="num">02</span><span><b>简介决定去留。</b>用两三句话判断题材、篇幅与情绪基调，比直接点开更省心。</span></li>
+            <li><span class="num">03</span><span><b>记录决定连贯。</b>长篇作品建议记下读到第几话，避免下次回来重新定位。</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 查找 -->
+  <section id="find">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2>在页面里查找豆包漫画条目</h2>
+          <p>输入题材或作品关键词，下方推荐卡片会高亮匹配项。这是页面内的定位工具，帮助你在这几个示例条目之间快速跳转。</p>
+        </div>
+        <span class="sec-tag">站内定位</span>
+      </div>
+      <div class="search-box">
+        <label for="q">搜索题材</label>
+        <input id="q" type="search" placeholder="例如：悬疑、治愈、校园" autocomplete="off" aria-describedby="qres">
+        <button class="btn btn-primary" type="button" id="go">查找</button>
+        <p class="result-line" id="qres" aria-live="polite">试试输入“校园”或“悬疑”。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="brand">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="40" height="40" role="img" aria-label="豆包漫画标志">
+              <rect width="64" height="64" rx="14" fill="#f7b955"/>
+              <path d="M16 19h32v27a4 4 0 0 1-4 4H20a4 4 0 0 1-4-4z" fill="#fff6e5"/>
+              <path d="M16 19h32v6H16z" fill="#e2762c"/>
+              <path d="M22 31h20M22 38h20M22 45h12" stroke="#c96a2b" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </span>
+          豆包漫画
+        </span>
+        豆包漫画主题首页，围绕阅读入口、题材分类与推荐结构展开，帮助读者更快找到想看的漫画内容。
+      </div>
+      <div class="foot-links">
+        <div>
+          <b>浏览</b>
+          <a href="#hot">热门漫画</a>
+          <a href="#genres">题材分类</a>
+        </div>
+        <div>
+          <b>阅读</b>
+          <a href="#read">阅读要点</a>
+          <a href="#find">查找漫画</a>
+        </div>
+      </div>
+    </div>
+    <div class="copy">
+      <span>豆包漫画 · 主题首页</span>
+      <span>栏目条目为结构示例，具体作品以实际平台内容为准。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('q');
+  var btn = document.getElementById('go');
+  var res = document.getElementById('qres');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#hot .card'));
+
+  function run(){
+    var kw = (input.value || '').trim();
+    cards.forEach(function(c){ c.classList.remove('hit'); });
+    if(!kw){
+      res.textContent = '试试输入“校园”或“悬疑”。';
+      return;
+    }
+    var hits = 0;
+    cards.forEach(function(c){
+      if(c.textContent.indexOf(kw) !== -1){
+        c.classList.add('hit');
+        hits++;
+      }
+    });
+    if(hits){
+      res.textContent = '找到 ' + hits + ' 个与“' + kw + '”相关的推荐条目，已高亮显示。';
+      var first = document.querySelector('#hot .card.hit');
+      if(first){ first.scrollIntoView({behavior:'smooth', block:'center'}); }
+    } else {
+      res.textContent = '这组示例条目里没有“' + kw + '”，可换个题材词，或查看上方题材分类。';
+    }
+  }
+
+  btn.addEventListener('click', run);
+  input.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); run(); }
+  });
+})();
+</script>
+</body>
+  </html>
