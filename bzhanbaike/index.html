@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>b站百科-B站百科词条查询_B站百科是什么_哔哩哔哩百科知识</title>
+<meta name="description" content="b站百科聚焦哔哩哔哩平台知识词条：了解b站百科是什么、词条如何组织、常见内容分类与查询入口，帮助访问者快速找到B站相关知识的集中说明。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23fb7299'/%3E%3Cpath d='M18 24h28v18a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4z' fill='%23fff'/%3E%3Cpath d='M24 20l-5-5M40 20l5-5' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='26' cy='33' r='2.6' fill='%23fb7299'/%3E%3Ccircle cx='38' cy='33' r='2.6' fill='%23fb7299'/%3E%3C/svg%3E">
+<style>
+:root{
+  --pink:#fb7299;
+  --pink-deep:#e35d84;
+  --blue:#00a1d6;
+  --ink:#1d2129;
+  --sub:#5b6472;
+  --line:#e8ebf0;
+  --bg:#f7f8fb;
+  --card:#ffffff;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+img,svg{display:block;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+
+/* header */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{display:flex;align-items:center;gap:28px;height:66px;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.5px;color:var(--ink);white-space:nowrap;}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--pink),#ff9db8);display:flex;align-items:center;justify-content:center;}
+.logo-mark svg{width:22px;height:22px;}
+.nav{display:flex;gap:22px;margin-left:auto;font-size:15px;color:var(--sub);}
+.nav a{padding:6px 2px;border-bottom:2px solid transparent;transition:.2s;}
+.nav a:hover{color:var(--pink);border-color:var(--pink);}
+.nav-cta{
+  background:var(--pink);color:#fff;font-size:14px;font-weight:600;
+  padding:9px 18px;border-radius:999px;transition:.2s;white-space:nowrap;
+}
+.nav-cta:hover{background:var(--pink-deep);}
+
+/* hero */
+.hero{
+  background:radial-gradient(1200px 400px at 85% -10%, #ffe3ec 0%, transparent 60%),
+             radial-gradient(900px 380px at 0% 0%, #dcf3fb 0%, transparent 55%);
+  padding:64px 0 56px;
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#fff;border:1px solid var(--line);border-radius:999px;
+  padding:5px 14px;font-size:13px;color:var(--sub);margin-bottom:20px;
+}
+.hero-tag i{width:7px;height:7px;border-radius:50%;background:var(--pink);display:inline-block;}
+h1{
+  font-size:clamp(30px,4.4vw,46px);
+  line-height:1.25;font-weight:800;letter-spacing:.5px;
+  margin-bottom:18px;
+}
+h1 .accent{color:var(--pink);}
+.hero-lead{font-size:16px;color:var(--sub);max-width:34em;margin-bottom:26px;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:15px;font-weight:600;padding:12px 24px;border-radius:12px;transition:.2s;
+}
+.btn-primary{background:var(--pink);color:#fff;box-shadow:0 8px 20px -8px rgba(251,114,153,.8);}
+.btn-primary:hover{background:var(--pink-deep);}
+.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line);}
+.btn-ghost:hover{border-color:var(--pink);color:var(--pink);}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap;font-size:13px;color:var(--sub);}
+.hero-stats b{display:block;font-size:20px;color:var(--ink);font-weight:800;}
+
+.hero-art{
+  background:#fff;border:1px solid var(--line);border-radius:22px;
+  padding:22px;box-shadow:0 24px 60px -34px rgba(60,80,120,.4);
+}
+.art-card{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:14px;background:var(--bg);margin-bottom:12px;}
+.art-card:last-child{margin-bottom:0;}
+.art-ico{flex:0 0 38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;color:#fff;}
+.ico-pink{background:linear-gradient(135deg,#fb7299,#ff9db8);}
+.ico-blue{background:linear-gradient(135deg,#00a1d6,#5ccbe8);}
+.ico-amber{background:linear-gradient(135deg,#f5a623,#ffc857);}
+.art-card h4{font-size:14px;font-weight:700;}
+.art-card p{font-size:12.5px;color:var(--sub);line-height:1.6;}
+
+/* sections */
+section{padding:56px 0;}
+.section-head{margin-bottom:32px;max-width:46em;}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--pink);text-transform:uppercase;margin-bottom:8px;}
+h2{font-size:clamp(22px,2.6vw,28px);font-weight:800;margin-bottom:10px;}
+.section-head p{color:var(--sub);font-size:15px;}
+
+/* what is */
+.what{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.what-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.what-text p{color:var(--sub);font-size:15px;margin-bottom:14px;}
+.what-text strong{color:var(--ink);}
+.point-list{list-style:none;display:grid;gap:12px;}
+.point-list li{
+  background:var(--bg);border-radius:12px;padding:14px 16px;font-size:14px;color:var(--sub);
+  border-left:3px solid var(--pink);
+}
+.point-list b{color:var(--ink);display:block;font-size:14.5px;margin-bottom:2px;}
+
+/* entries */
+.entries-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.entry-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;transition:.22s;
+}
+.entry-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -26px rgba(40,60,100,.45);border-color:#f3c6d5;}
+.entry-card .tag{
+  display:inline-block;font-size:12px;font-weight:700;color:var(--pink);
+  background:#fff0f4;border-radius:6px;padding:2px 9px;margin-bottom:12px;
+}
+.entry-card h3{font-size:16.5px;font-weight:700;margin-bottom:8px;}
+.entry-card p{font-size:14px;color:var(--sub);}
+.entry-card .meta{font-size:12.5px;color:#98a2b3;margin-top:14px;}
+
+/* guide */
+.guide{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.step{
+  border:1px dashed #e2e6ee;border-radius:var(--radius);padding:22px;background:var(--bg);
+}
+.step-num{
+  width:32px;height:32px;border-radius:9px;background:var(--ink);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;margin-bottom:14px;
+}
+.step h3{font-size:16px;margin-bottom:6px;}
+.step p{font-size:14px;color:var(--sub);}
+
+/* search */
+.search-panel{
+  background:linear-gradient(135deg,#fb7299,#ff9db8);
+  border-radius:22px;padding:38px 34px;color:#fff;
+  display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
+}
+.search-panel h2{color:#fff;margin-bottom:6px;}
+.search-panel p{font-size:14.5px;opacity:.92;}
+.search-box{display:flex;background:#fff;border-radius:12px;padding:5px;gap:6px;min-width:320px;}
+.search-box input{
+  border:none;outline:none;flex:1;font-size:14px;padding:10px 12px;border-radius:9px;color:var(--ink);
+  font-family:inherit;
+}
+.search-box button{
+  border:none;background:var(--ink);color:#fff;font-size:14px;font-weight:600;
+  padding:10px 18px;border-radius:9px;cursor:pointer;font-family:inherit;transition:.2s;
+}
+.search-box button:hover{background:#000;}
+.search-result{margin-top:14px;font-size:13.5px;color:#fff;min-height:20px;grid-column:1/-1;opacity:.95;}
+
+/* faq */
+.faq-list{display:grid;gap:14px;}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;}
+.faq-item h3{font-size:15.5px;margin-bottom:6px;}
+.faq-item p{font-size:14px;color:var(--sub);}
+
+/* footer */
+.site-footer{background:#171a20;color:#b9c0cc;padding:44px 0 28px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;margin-bottom:32px;}
+.site-footer .logo{color:#fff;margin-bottom:12px;}
+.footer-desc{font-size:13.5px;line-height:1.9;max-width:30em;}
+.footer-col h4{color:#fff;font-size:14px;margin-bottom:12px;}
+.footer-col a{display:block;font-size:13.5px;padding:4px 0;transition:.2s;}
+.footer-col a:hover{color:var(--pink);}
+.footer-bottom{border-top:1px solid #2a2f39;padding-top:18px;font-size:12.5px;color:#7b8494;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+@media(max-width:900px){
+  .hero-grid,.what-grid{grid-template-columns:1fr;gap:32px;}
+  .entries-grid,.steps{grid-template-columns:1fr 1fr;}
+  .search-panel{grid-template-columns:1fr;padding:30px 24px;}
+  .search-box{min-width:0;width:100%;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:640px){
+  .wrap{padding:0 18px;}
+  .header-inner{height:auto;flex-wrap:wrap;gap:10px;padding:12px 0;}
+  .nav{margin-left:0;width:100%;overflow-x:auto;gap:16px;font-size:14px;padding-bottom:4px;}
+  .nav-cta{margin-left:auto;}
+  .hero{padding:40px 0 36px;}
+  .entries-grid,.steps,.footer-grid{grid-template-columns:1fr;}
+  section{padding:40px 0;}
+  .hero-stats{gap:20px;}
+  .footer-bottom{flex-direction:column;}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#top" class="logo" aria-label="b站百科 首页">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 24h28v18a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4z" fill="#fff"/>
+          <path d="M24 20l-5-5M40 20l5-5" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>
+          <circle cx="26" cy="33" r="2.6" fill="#fb7299"/>
+          <circle cx="38" cy="33" r="2.6" fill="#fb7299"/>
+        </svg>
+      </span>
+      b站百科
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#what">什么是b站百科</a>
+      <a href="#entries">词条分类</a>
+      <a href="#guide">查阅方式</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <a href="#search" class="nav-cta">查找词条</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="hero-tag"><i></i>b站百科 · 平台知识集中查阅</span>
+        <h1>b站百科</h1>
+        <p class="hero-lead">b站百科把哔哩哔哩相关的平台概念、内容生态与使用常识归拢到一处，让访问者不必在零散信息中反复翻找，就能读懂一个词条指的是什么、处在什么位置。</p>
+        <div class="hero-actions">
+          <a href="#search" class="btn btn-primary">
+            开始查词条
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#entries" class="btn btn-ghost">浏览词条分类</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>4</b>大词条方向</div>
+          <div><b>3</b>步查阅路径</div>
+          <div><b>持续</b>补充与校订</div>
+        </div>
+      </div>
+      <aside class="hero-art" aria-label="b站百科内容示意">
+        <div class="art-card">
+          <span class="art-ico ico-pink" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+          </span>
+          <div><h4>按词条查</h4><p>输入一个名词，直接看到它属于哪一类内容。</p></div>
+        </div>
+        <div class="art-card">
+          <span class="art-ico ico-blue" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 5.5h16M4 12h16M4 18.5h10"/></svg>
+          </span>
+          <div><h4>按分类读</h4><p>平台功能、内容生态、社区文化、常用术语四类并排。</p></div>
+        </div>
+        <div class="art-card">
+          <span class="art-ico ico-amber" aria-hidden="true">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg>
+          </span>
+          <div><h4>看释义边界</h4><p>区分官方定义与社区习惯说法，避免混用。</p></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- WHAT -->
+  <section class="what" id="what">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">定位说明</div>
+        <h2>什么是 b站百科</h2>
+        <p>先弄清页面在讲什么，再决定从哪一条词条读起。</p>
+      </div>
+      <div class="what-grid">
+        <div class="what-text">
+          <p><strong>b站百科</strong>是一类面向哔哩哔哩（B站）平台的百科知识页面，它把分散在站内帮助中心、社区讨论与用户日常交流中的概念，按词条的方式重新组织。访问者带着一个具体名词进来，通常希望获得三件事：这个词指什么、它在平台里处于什么环节、以及它和其他相近概念的区别。</p>
+          <p>因此，b站百科的内容重点不是介绍某一位创作者或某一期节目，而是解释<strong>平台层面的通用概念</strong>。词条写法上，先给出可直接理解的短释义，再补充使用场景与边界说明，最后标注该说法属于官方设定还是社区约定俗成。</p>
+          <p>对于刚接触B站的新用户，b站百科可以作为理解站内术语的第一站；对于已经熟悉平台的老用户，它更适合用来核对某个概念近年是否发生变化，避免沿用旧说法。</p>
+        </div>
+        <ul class="point-list">
+          <li><b>以名词为单位</b>每个词条只回答一个概念，不把多个术语混在同一条里解释。</li>
+          <li><b>区分说法来源</b>官方帮助文档中的定义与社区口语化称呼分列呈现，标明适用范围。</li>
+          <li><b>保留更新位置</b>平台规则调整后，旧释义保留说明，新增释义单独标注时间。</li>
+          <li><b>不替代官方公告</b>b站百科提供理解线索，具体规则以平台正式发布为准。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTRIES -->
+  <section id="entries">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">内容分区</div>
+        <h2>b站百科的词条分类</h2>
+        <p>按概念所属的环节划分，方便从熟悉的区域切入，再逐步扩展到相邻词条。</p>
+      </div>
+      <div class="entries-grid">
+        <article class="entry-card">
+          <span class="tag">平台功能</span>
+          <h3>账号、稿件与互动</h3>
+          <p>围绕账号状态、稿件发布、弹幕与评论等基础功能展开，说明每个功能在站内流程中的位置，以及常见状态名称的含义。</p>
+          <div class="meta">适合：新用户熟悉站内操作</div>
+        </article>
+        <article class="entry-card">
+          <span class="tag">内容生态</span>
+          <h3>分区、标签与推荐</h3>
+          <p>解释内容分区、标签体系与推荐机制之间的关系，帮助理解一条内容为何出现在某个位置，以及标签如何影响内容归类。</p>
+          <div class="meta">适合：理解内容组织方式</div>
+        </article>
+        <article class="entry-card">
+          <span class="tag">社区文化</span>
+          <h3>弹幕礼仪与社区习惯</h3>
+          <p>整理社区中长期形成的表达习惯与互动约定，说明这些说法从何而来、在什么场景下使用更合适。</p>
+          <div class="meta">适合：融入社区交流</div>
+        </article>
+        <article class="entry-card">
+          <span class="tag">常用术语</span>
+          <h3>站内高频名词</h3>
+          <p>收录日常交流中出现频率较高的简称与缩略说法，给出完整表述与使用语境，减少理解偏差。</p>
+          <div class="meta">适合：快速对照理解</div>
+        </article>
+        <article class="entry-card">
+          <span class="tag">会员与权益</span>
+          <h3>会员体系相关概念</h3>
+          <p>梳理会员等级、权益类型等名词的基本含义，说明不同等级之间的差异所在，不涉及具体价格与活动。</p>
+          <div class="meta">适合：核对权益名词</div>
+        </article>
+        <article class="entry-card">
+          <span class="tag">内容规范</span>
+          <h3>投稿与社区规范名词</h3>
+          <p>解释内容规范中常见的处理类型与状态名称，帮助理解提示信息的含义，具体判定仍以平台公告为准。</p>
+          <div class="meta">适合：读懂站内提示</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDE -->
+  <section class="guide" id="guide">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">查阅方式</div>
+        <h2>怎样用 b站百科 查一个词</h2>
+        <p>三步之内定位到需要的解释，减少来回跳转。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>先确认词形</h3>
+          <p>同一概念常有简称与全称两种写法。先想清楚你看到的是哪一种，再进入对应词条，能避免读到相邻但不相同的解释。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>读短释义再读细节</h3>
+          <p>每条词条开头都有一句可直接理解的说明。若只求快速确认，读到这一句即可；需要场景判断时再往下读使用说明。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>对照相近词条</h3>
+          <p>概念之间往往成对出现。读完一条后，顺着页面给出的相近词条继续看，能更快建立完整的概念关系。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <section id="search">
+    <div class="wrap">
+      <div class="search-panel">
+        <div>
+          <h2>查找 b站百科 词条</h2>
+          <p>输入一个名词，页面会在下方给出匹配的词条方向。</p>
+        </div>
+        <form class="search-box" id="searchForm" role="search">
+          <input type="search" id="searchInput" placeholder="如：弹幕、分区、标签" aria-label="输入b站百科词条关键词">
+          <button type="submit">查找</button>
+        </form>
+        <div class="search-result" id="searchResult" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">常见问题</div>
+        <h2>关于 b站百科 的常见疑问</h2>
+        <p>把访问者最常提出的几个问题放在一起回答。</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3>b站百科是官方产品吗？</h3>
+          <p>不是。b站百科属于面向访问者的知识整理页面，用于汇总平台概念的解释线索。涉及规则、权益与判定的最终内容，请以哔哩哔哩官方发布为准。</p>
+        </div>
+        <div class="faq-item">
+          <h3>为什么同一名词会有两种解释？</h3>
+          <p>平台功能类名词通常有官方定义，社区交流中又可能形成口语化说法。b站百科把两者并列呈现，并标明各自适用范围，读者可按场景取用。</p>
+        </div>
+        <div class="faq-item">
+          <h3>词条会随着平台变化更新吗？</h3>
+          <p>会。平台调整后，原有释义保留作为历史说明，新增释义单独标注，方便读者分辨新旧说法的差异。</p>
+        </div>
+        <div class="faq-item">
+          <h3>能否把 b站百科 内容整段转载？</h3>
+          <p>页面内容用于个人查阅与理解。如需在其他场合引用，建议回到平台官方文档核对原始表述，避免转述产生偏差。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 24h28v18a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4z" fill="#fff"/>
+              <path d="M24 20l-5-5M40 20l5-5" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>
+              <circle cx="26" cy="33" r="2.6" fill="#fb7299"/>
+              <circle cx="38" cy="33" r="2.6" fill="#fb7299"/>
+            </svg>
+          </span>
+          b站百科
+        </div>
+        <p class="footer-desc">b站百科以词条方式整理哔哩哔哩平台的概念与常用术语，帮助访问者理解名词含义、使用场景与说法来源，具体规则以平台官方发布为准。</p>
+      </div>
+      <div class="footer-col">
+        <h4>内容栏目</h4>
+        <a href="#what">什么是b站百科</a>
+        <a href="#entries">词条分类</a>
+        <a href="#guide">查阅方式</a>
+        <a href="#faq">常见问题</a>
+      </div>
+      <div class="footer-col">
+        <h4>快速入口</h4>
+        <a href="#search">查找词条</a>
+        <a href="#entries">平台功能词条</a>
+        <a href="#entries">内容生态词条</a>
+        <a href="#entries">常用术语词条</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 b站百科 · 知识整理页面</span>
+      <span>内容仅供查阅参考，最终以哔哩哔哩官方说明为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var entries = [
+    {keys:['弹幕','弹','弹幕礼仪'], name:'社区文化 · 弹幕礼仪与社区习惯'},
+    {keys:['分区','频道'], name:'内容生态 · 分区、标签与推荐'},
+    {keys:['标签','tag'], name:'内容生态 · 标签体系'},
+    {keys:['会员','等级','权益'], name:'会员与权益 · 会员体系相关概念'},
+    {keys:['稿件','投稿','发布'], name:'平台功能 · 账号、稿件与互动'},
+    {keys:['规范','提示','处理'], name:'内容规范 · 投稿与社区规范名词'},
+    {keys:['术语','简称','缩写'], name:'常用术语 · 站内高频名词'}
+  ];
+  var form = document.getElementById('searchForm');
+  var input = document.getElementById('searchInput');
+  var out = document.getElementById('searchResult');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var q = (input.value || '').trim();
+    if(!q){ out.textContent = '请先输入一个名词，再点击查找。'; return; }
+    var hit = entries.filter(function(item){
+      return item.keys.some(function(k){ return q.indexOf(k) > -1 || k.indexOf(q) > -1; });
+    });
+    if(hit.length){
+      out.textContent = '匹配到：' + hit.map(function(h){ return h.name; }).join('；') + '。可继续向下浏览对应分类。';
+    }else{
+      out.textContent = '暂未收录「' + q + '」的直接匹配，可先浏览下方词条分类，或换用更短的名词再试。';
+    }
+  });
+})();
+</script>
+</body>
+</html>
